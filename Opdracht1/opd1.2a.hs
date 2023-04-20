@@ -34,5 +34,5 @@ main = do
       putStrLn $ "Length of " ++ inputFile ++ ": " ++ show (length input) ++ " characters"
       putStrLn $ "Length of compressed file " ++ outputFile ++ ": " ++ show (length compressed) ++ " characters"
       putStrLn $ "Factor: " ++ show factor ++ "%"
-      putStrLn "Done."
+      putStrLn "done..."
     _ -> putStrLn "Usage: rlcompress <input_file> <output_file>"
