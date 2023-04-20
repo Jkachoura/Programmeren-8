@@ -4,10 +4,13 @@ import Data.Char (isDigit)
 -- Functie om run-length decompressie uit te voeren op een string
 rldecompress :: String -> String
 rldecompress "" = ""
-rldecompress (c:cs) = replicate count c ++ rldecompress rest
+rldecompress str@(c:cs)
+  | isDigit c = replicate count (head rest) ++ rldecompress (tail rest)
+  | otherwise = c : rldecompress cs
   where
-    count = read (takeWhile isDigit cs) :: Int
-    rest = dropWhile isDigit cs
+    count = read (takeWhile isDigit str) :: Int
+    rest = dropWhile isDigit str
+
 
 -- Functie om de compressiefactor te berekenen
 compressFactor :: String -> String -> Double
@@ -34,4 +37,4 @@ main = do
       putStrLn $ "Length of " ++ outputFile ++ ": " ++ show (length decompressed) ++ " characters"
       putStrLn $ "Factor: " ++ show factor ++ "%"
       putStrLn "Done."
-    _ -> putStrLn "Usage: rlcompress <input_file> <output_file>"
+    _ -> putStrLn "Usage: rldecompress <input_file> <output_file>"
