@@ -3,7 +3,9 @@ import System.Environment
 -- Functie om run-length compressie uit te voeren op een string
 rlcompress :: String -> String
 rlcompress "" = ""
-rlcompress str@(c:cs) = (c : show count) ++ rlcompress rest
+rlcompress str@(c:cs) 
+    | count == 1 = c : rlcompress rest
+    | otherwise = show count ++ [c] ++ rlcompress rest
   where
     count = length $ takeWhile (== c) str
     rest = dropWhile (== c) str
