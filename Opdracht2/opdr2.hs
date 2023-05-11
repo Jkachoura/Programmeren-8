@@ -20,7 +20,7 @@ module Opdr2 where
     -- Map a function to all elements in a tree
     maptree::(a -> b) -> (BinTree a) -> (BinTree b)
     maptree _ Empty                 = Empty
-    maptree f (Node a l r)  =  Node (f a) (maptree f l) (maptree f r)
+    maptree f (Node a l r)          =  Node (f a) (maptree f l) (maptree f r)
 
     -- Return list with the filtered elements of the tree
     filtertree::(a -> Bool) -> (BinTree a) -> [a]
